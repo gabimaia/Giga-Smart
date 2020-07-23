@@ -1,0 +1,22 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          gigapop-boot
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+# Armazenar em: /etc/init.d/gigapop-boot
+
+# Inicializando a rotina que envia os dados coletados para o ThingsBoard e realiza o acionamento dos reles
+python3 /usr/local/src/gigapop-mqtt.py &
+
+# Inicializando a coleta do sensor DHT11
+python3 /usr/local/src/sensor-dht11.py &
+
+# Inicializando a coleta dos sensores de energia
+python3 /usr/local/src/sensor-energy.py &

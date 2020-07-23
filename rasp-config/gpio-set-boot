@@ -1,0 +1,43 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          gpio-set-boot.sh
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+# Armazenar em: /etc/init.d/gpio-set-boot
+
+#Pino Rele da porta
+echo 7 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio7/direction
+echo 1 > /sys/class/gpio/gpio7/value
+
+#Pino Segundo Rele
+echo 8 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio8/direction
+echo 1 > /sys/class/gpio/gpio8/value
+
+#Pino Sensor de Chamas
+echo 16 > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio16/direction
+ 
+#Pino Sensor de porta
+echo 20 > /sys/class/gpio/export  
+echo in > /sys/class/gpio/gpio20/direction
+ 
+#Pino Sensor de Fumaca
+echo 21 > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio21/direction
+ 
+#Pino Rele do ar condicionado
+echo 25 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio25/direction
+ 
+#Pino Detector de Liquido
+echo 26 > /sys/class/gpio/export  
+echo in > /sys/class/gpio/gpio26/direction
